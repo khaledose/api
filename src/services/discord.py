@@ -13,12 +13,12 @@ class DiscordManager:
         response.raise_for_status()
         guilds = response.json()
         for guild in guilds:
-            if isinstance(guild, dict) and (guild['owner'] or guild['id'] == DiscordConstants.GUILD_ID):
+            if isinstance(guild, dict) and guild['owner']:
                 return guild['id']
         return None
 
-    def create_channel(self, user: str) -> Optional[str]:
-        response = self.client.get(f'{DiscordConstants.API_URL}/guilds/{DiscordConstants.GUILD_ID}/channels')
+    def create_channel(self, user: str, guild_id: str) -> Optional[str]:
+        response = self.client.get(f'{DiscordConstants.API_URL}/guilds/{guild_id}/channels')
         response.raise_for_status()
         channels = response.json()
         for channel in channels:
@@ -28,7 +28,7 @@ class DiscordManager:
             'name': user,
             'type': 0,
         }
-        response = self.client.post(f'{DiscordConstants.API_URL}/guilds/{DiscordConstants.GUILD_ID}/channels', json=payload)
+        response = self.client.post(f'{DiscordConstants.API_URL}/guilds/{guild_id}/channels', json=payload)
         response.raise_for_status()
         channel = response.json()
         return channel.get('id', None)
