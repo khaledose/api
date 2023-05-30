@@ -3,12 +3,13 @@ class DiscordConstants:
     API_URL = 'https://discord.com/api'
 
     # Server
-    GUILD_ID = '1108873919567515699'
+    
 
 class MidjourneyConstants:
     # Discord application ID and session ID
     APPLICATION_ID = '936929561302675456'
     SESSION_ID = 'c58b6c7026154a102682807943252195'
+    GUILD_ID = '1108873919567515699'
     
     # Command IDs and versions
     IMAGINE_COMMAND_ID = '938956540159881230'
